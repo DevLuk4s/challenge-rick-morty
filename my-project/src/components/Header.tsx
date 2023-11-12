@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import logo from "../img/logo.png";
+import logo from "@/img/logo.png";
 
-function Header() {
+export default function Header() {
   return (
     <header className="flex justify-around items-center p-5">
-      <Image className="w-16" src={logo} alt="logo" />
+      <Image className="w-12" src={logo} alt="logo" />
 
       <nav>
         <ul className="flex space-x-5">
@@ -29,5 +29,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

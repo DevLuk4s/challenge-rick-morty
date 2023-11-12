@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoMdArrowDropdown } from "react-icons/io";
 
-const Filter = () => {
+export default function Filter() {
   return (
     <div className="container mx-auto my-10 flex flex-row justify-between">
       <div className="flex flex-row items-center justify-center border border-gray-300 w-full max-w-[300px]">
@@ -27,6 +27,4 @@ const Filter = () => {
       </div>
     </div>
   );
-};
-
-export default Filter;
+}

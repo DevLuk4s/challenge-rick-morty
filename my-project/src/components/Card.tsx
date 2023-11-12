@@ -1,52 +1,48 @@
 import React from "react";
-import Image from "next/image";
-import rick from "@/img/1.jpeg";
+import { useEffect, useState } from "react";
+import fetchCharacter from "@/api/api";
 
-const Card = () => {
-  return (
-    <div className="container mx-auto w-full h-auto grid grid-cols-4 gap-6">
-      <div className="relative border border-gray-300">
-        <p className="absolute top-1 left-1 bg-green-700 text-white p-1 rounded-md">
-          Alive
-        </p>
-        <Image src={rick} alt="/" />
-        <div className="p-3">
-          <h1 className="text-2xl font-bold">Rick Sanchez</h1>
-          <p>Human</p>
-        </div>
-      </div>
-      <div className="relative border border-gray-300">
-        <p className="absolute top-1 left-1 bg-green-700 text-white p-1 rounded-md">
-          Alive
-        </p>
-        <Image src={rick} alt="/" />
-        <div className="p-3">
-          <h1 className="text-2xl font-bold">Rick Sanchez</h1>
-          <p>Human</p>
-        </div>
-      </div>
-      <div className="relative border border-gray-300">
-        <p className="absolute top-1 left-1 bg-green-700 text-white p-1 rounded-md">
-          Alive
-        </p>
-        <Image src={rick} alt="/" />
-        <div className="p-3">
-          <h1 className="text-2xl font-bold">Rick Sanchez</h1>
-          <p>Human</p>
-        </div>
-      </div>
-      <div className="relative border border-gray-300">
-        <p className="absolute top-1 left-1 bg-green-700 text-white p-1 rounded-md">
-          Alive
-        </p>
-        <Image src={rick} alt="/" />
-        <div className="p-3">
-          <h1 className="text-2xl font-bold">Rick Sanchez</h1>
-          <p>Human</p>
-        </div>
-      </div>
-    </div>
-  );
+type Character = {
+  id: number;
+  name: string;
+  species: string;
+  image: string;
 };
 
-export default Card;
+type CardProps = {
+  page: number;
+};
+
+export default function Card({page}) {
+  const [character, setCharacter] = useState<Character[]>([]);
+  const [status, setStatus] = useState("alive");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchCharacter("character", page).then((response) => {
+      setCharacter(response);
+      setLoading(false);
+    });
+  }, [page]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  return (
+    <div className="container mx-auto w-full h-auto grid grid-cols-4 gap-6">
+      {character.map((item, index) => (
+        <div key={index} className="relative border border-gray-300">
+          <p className="absolute top-1 left-1 bg-green-700 text-white p-1 rounded-md">
+            {status}
+          </p>
+          <img src={item.image} />
+          <div className="p-3">
+            <h1 className="text-2xl font-bold">{item.name}</h1>
+            <p>{item.species}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
