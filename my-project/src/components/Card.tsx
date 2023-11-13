@@ -7,13 +7,16 @@ type Character = {
   name: string;
   species: string;
   image: string;
+  status: string;
+  origin: string;
+  gender: string;
 };
 
 type CardProps = {
   page: number;
 };
 
-export default function Card({page}) {
+export default function Card({ page }) {
   const [character, setCharacter] = useState<Character[]>([]);
   const [status, setStatus] = useState("alive");
   const [loading, setLoading] = useState(true);
@@ -39,7 +42,9 @@ export default function Card({page}) {
           <img src={item.image} />
           <div className="p-3">
             <h1 className="text-2xl font-bold">{item.name}</h1>
-            <p>{item.species}</p>
+            <p>{item.status} - {item.species} - {item.gender}</p>
+            <p>Last known location:</p>
+            <p>{item.origin.name}</p>
           </div>
         </div>
       ))}

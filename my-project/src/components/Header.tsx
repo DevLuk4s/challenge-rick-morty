@@ -6,7 +6,6 @@ export default function Header() {
   return (
     <header className="flex justify-around items-center p-5">
       <Image className="w-12" src={logo} alt="logo" />
-
       <nav>
         <ul className="flex space-x-5">
           <li>
