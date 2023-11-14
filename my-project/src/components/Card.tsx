@@ -55,7 +55,9 @@ const Card: React.FC<CardProps> = ({ page }) => {
             <p>
               {item.status} - {item.species} - {item.gender}
             </p>
-            <p>Última localização conhecida:</p>
+            <h2 className="text-xl mt-3 text-gray-700">Last known location:</h2>
+            <p>{item.origin.name}</p>
+            <h2 className="text-xl mt-3 text-gray-700">First seen in:</h2>
             <p>{item.origin.name}</p>
           </div>
         </div>

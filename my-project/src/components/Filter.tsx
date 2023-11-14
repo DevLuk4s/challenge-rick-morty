@@ -16,7 +16,6 @@ export default function Filter() {
       <div className="flex flex-row items-center justify-between border border-gray-300 p-3 w-full max-w-[300px]">
         <button>Species</button>
         <IoMdArrowDropdown />
-        <div>link 1</div>
       </div>
       <div className="flex flex-row items-center justify-between border border-gray-300 p-3 w-full max-w-[300px]">
         <button>Gender</button>
