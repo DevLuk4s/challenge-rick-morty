@@ -7,7 +7,7 @@ export default function App() {
     <>
       <Header />
       <Filter />
-      <Card page={1}/>
+      <Card page={2} />
     </>
   );
 }

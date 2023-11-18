@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import fetchCharacter from "@/api/api";
+import PrevCard from "./PrevCard";
+// import { type } from "os";
 
 type Character = {
   id: number;
@@ -7,8 +9,13 @@ type Character = {
   species: string;
   image: string;
   status: string;
-  origin: Origin;
   gender: string;
+  origin: Origin;
+  location: Location;
+};
+
+type Location = {
+  name: string;
 };
 
 type Origin = {
@@ -34,10 +41,19 @@ const Card: React.FC<CardProps> = ({ page }) => {
     return <p>Carregando...</p>;
   }
 
+  const PrevCard = () => {
+    <PrevCard />
+    alert("Oi")
+  };
+
   return (
     <div className="container mx-auto w-full h-auto grid grid-cols-4 gap-6">
       {character.map((item) => (
-        <div key={item.id} className="relative border border-gray-300">
+        <div
+          onClick={() => PrevCard()}
+          key={item.id}
+          className="relative border border-gray-300"
+        >
           <p
             className={`absolute top-1 left-1 p-1 rounded-md ${
               item.status === "Alive"
@@ -53,11 +69,11 @@ const Card: React.FC<CardProps> = ({ page }) => {
           <div className="p-3">
             <h1 className="text-2xl font-bold">{item.name}</h1>
             <p>
-              {item.status} - {item.species} - {item.gender}
+              {item.status} - {item.species}
             </p>
-            <h2 className="text-xl mt-3 text-gray-700">Last known location:</h2>
-            <p>{item.origin.name}</p>
             <h2 className="text-xl mt-3 text-gray-700">First seen in:</h2>
+            <p>{item.location.name}</p>
+            <h2 className="text-xl mt-3 text-gray-700">Last known location:</h2>
             <p>{item.origin.name}</p>
           </div>
         </div>
