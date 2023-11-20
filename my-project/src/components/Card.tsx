@@ -30,7 +30,7 @@ const Card: React.FC<CardProps> = ({ page }) => {
 
   useEffect(() => {
     fetchCharacter("character", page).then((response) => {
-      setCharacter(response);
+      setCharacter((prevCards) => [...prevCards, ...response]);
       setLoading(false);
     });
   }, [page]);
