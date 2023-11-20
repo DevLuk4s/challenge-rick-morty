@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import fetchCharacter from "@/api/api";
-import PrevCard from "./PrevCard";
-// import { type } from "os";
 
 type Character = {
   id: number;
@@ -41,19 +39,10 @@ const Card: React.FC<CardProps> = ({ page }) => {
     return <p>Carregando...</p>;
   }
 
-  const PrevCard = () => {
-    <PrevCard />
-    alert("Oi")
-  };
-
   return (
     <div className="container mx-auto w-full h-auto grid grid-cols-4 gap-6">
       {character.map((item) => (
-        <div
-          onClick={() => PrevCard()}
-          key={item.id}
-          className="relative border border-gray-300"
-        >
+        <div key={item.id} className="relative border border-gray-300">
           <p
             className={`absolute top-1 left-1 p-1 rounded-md ${
               item.status === "Alive"
