@@ -40,11 +40,11 @@ const Card: React.FC<CardProps> = ({ page }) => {
   }
 
   return (
-    <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div className="container mx-auto w-full h-auto grid grid-cols-4 gap-6">
       {character.map((item) => (
         <div key={item.id} className="relative border border-gray-300">
           <p
-            className={`absolute top-0 left-0 p-1 rounded-md ${
+            className={`absolute top-1 left-1 p-1 rounded-md ${
               item.status === "Alive"
                 ? "bg-green-700"
                 : item.status === "Dead"
@@ -54,30 +54,16 @@ const Card: React.FC<CardProps> = ({ page }) => {
           >
             {item.status}
           </p>
-          <img
-            src={item.image}
-            alt={`Imagem de ${item.name}`}
-            className="w-full h-auto"
-          />
+          <img src={item.image} alt="imagem dos personagens" />
           <div className="p-3">
-            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-2xl font-bold">
-              {item.name}
-            </h1>
-            <p className="text-sm sm:text-base md:text-lg lg:text-lg">
+            <h1 className="text-2xl font-bold">{item.name}</h1>
+            <p>
               {item.status} - {item.species}
             </p>
-            <h2 className="text-sm sm:text-base md:text-lg lg:text-lg mt-2 text-gray-700">
-              First seen in:
-            </h2>
-            <p className="text-sm sm:text-base md:text-lg lg:text-lg">
-              {item.location.name}
-            </p>
-            <h2 className="text-sm sm:text-base md:text-lg lg:text-lg mt-2 text-gray-700">
-              Last known location:
-            </h2>
-            <p className="text-sm sm:text-base md:text-lg lg:text-lg">
-              {item.origin.name}
-            </p>
+            <h2 className="text-xl mt-3 text-gray-700">First seen in:</h2>
+            <p>{item.location.name}</p>
+            <h2 className="text-xl mt-3 text-gray-700">Last known location:</h2>
+            <p>{item.origin.name}</p>
           </div>
         </div>
       ))}
