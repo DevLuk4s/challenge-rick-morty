@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const PrevCard = () => {
-  return (
-    <div>PrevCard2</div>
-  )
-}
+  return <div>PrevCard2</div>;
+};
 
-export default PrevCard
+export default PrevCard;

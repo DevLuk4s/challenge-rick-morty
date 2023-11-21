@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import fetchCharacter from "@/api/api";
+import { fetchCharacters } from "@/pages/api/api";
+import Link from "next/link";
 
 type Character = {
   id: number;
@@ -20,20 +21,24 @@ type Origin = {
   name: string;
 };
 
-type CardProps = {
-  page: number;
-};
-
-const Card: React.FC<CardProps> = ({ page }) => {
-  const [character, setCharacter] = useState<Character[]>([]);
+function Card() {
+  const [characters, setCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchCharacter("character", page).then((response) => {
-      setCharacter((prevCards) => [...prevCards, ...response]);
-      setLoading(false);
-    });
-  }, [page]);
+    const fetchData = async () => {
+      try {
+        const response = await fetchCharacters();
+        setCharacters(response.results);
+        setLoading(false);
+      } catch (error) {
+        console.error("Erro ao buscar personagens:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   if (loading) {
     return <p>Carregando...</p>;
@@ -41,34 +46,38 @@ const Card: React.FC<CardProps> = ({ page }) => {
 
   return (
     <div className="container mx-auto w-full h-auto grid grid-cols-4 gap-6">
-      {character.map((item) => (
-        <div key={item.id} className="relative border border-gray-300">
-          <p
-            className={`absolute top-1 left-1 p-1 rounded-md ${
-              item.status === "Alive"
-                ? "bg-green-700"
-                : item.status === "Dead"
-                ? "bg-red-700"
-                : "bg-gray-700"
-            } text-white`}
-          >
-            {item.status}
-          </p>
-          <img src={item.image} alt="imagem dos personagens" />
-          <div className="p-3">
-            <h1 className="text-2xl font-bold">{item.name}</h1>
-            <p>
-              {item.status} - {item.species}
+      {characters.map((items) => (
+        <Link href={`/character/${items.id}`} key={items.id}>
+          <div className="relative border border-gray-300">
+            <p
+              className={`absolute top-1 left-1 p-1 rounded-md ${
+                items.status === "Alive"
+                  ? "bg-green-700"
+                  : items.status === "Dead"
+                  ? "bg-red-700"
+                  : "bg-gray-700"
+              } text-white`}
+            >
+              {items.status}
             </p>
-            <h2 className="text-xl mt-3 text-gray-700">First seen in:</h2>
-            <p>{item.location.name}</p>
-            <h2 className="text-xl mt-3 text-gray-700">Last known location:</h2>
-            <p>{item.origin.name}</p>
+            <img src={items.image} alt="imagem dos personagens" />
+            <div className="p-3">
+              <h1 className="text-2xl font-bold">{items.name}</h1>
+              <p>
+                {items.status} - {items.species}
+              </p>
+              <h2 className="text-xl mt-3 text-gray-700">First seen in:</h2>
+              <p>{items.location.name}</p>
+              <h2 className="text-xl mt-3 text-gray-700">
+                Last known location:
+              </h2>
+              <p>{items.origin.name}</p>
+            </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
-};
+}
 
 export default Card;

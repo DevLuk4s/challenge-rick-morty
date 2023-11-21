@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import logo from "@/img/logo.png";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -9,19 +10,28 @@ export default function Header() {
       <nav>
         <ul className="flex space-x-5">
           <li>
-            <a className="hover:text-green-500 font-semibold text-lg" href="#">
+            <Link
+              className="hover:text-green-500 font-semibold text-lg"
+              href={`@/components/Card`}
+            >
               Character
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="hover:text-green-500 font-semibold text-lg" href="#">
+            <Link
+              className="hover:text-green-500 font-semibold text-lg"
+              href="#"
+            >
               Location
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="hover:text-green-500 font-semibold text-lg" href="#">
+            <Link
+              className="hover:text-green-500 font-semibold text-lg"
+              href="#"
+            >
               Episode
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
