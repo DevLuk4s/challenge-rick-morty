@@ -2,7 +2,7 @@ import React from 'react'
 
 const PrevCard = () => {
   return (
-    <div>PrevCard</div>
+    <div>PrevCard2</div>
   )
 }
 
