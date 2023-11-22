@@ -16,6 +16,8 @@ export const fetchEpisodes = async () => {
   return fetchData("https://rickandmortyapi.com/api/episode");
 };
 
-export const fetchPage = async (page: number) => {
-  return fetchData(`https://rickandmortyapi.com/api/character/?page=${page}`);
+export const fetchPage = async (pageNumber: number) => {
+  return fetchData(
+    `https://rickandmortyapi.com/api/character/?page=${pageNumber}`
+  );
 };
