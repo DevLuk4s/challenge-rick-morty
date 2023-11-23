@@ -22,7 +22,7 @@ type Origin = {
 };
 
 function Load() {
-  const [pageNumber, setPageNumber] = useState<number>(42);
+  const [pageNumber, setPageNumber] = useState<number>(1);
   const [characters, setCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
 
