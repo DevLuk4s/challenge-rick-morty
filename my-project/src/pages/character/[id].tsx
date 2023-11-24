@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import Header from "@/components/Header";
-import Image from "next/image";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 interface CharacterData {
   id: number;
@@ -27,25 +28,19 @@ function PrevCard() {
   useEffect(() => {
     const fetchCharacterData = async () => {
       try {
-        // Obtém o id do personagem da URL
         const { id } = router.query;
 
-        // Se não houver id, não faça a requisição
         if (!id) {
           return;
         }
 
-        // Faz a requisição à API com base no id da URL
         const response = await fetch(
           `https://rickandmortyapi.com/api/character/${id}`
         );
 
-        // Verifica se a resposta foi bem-sucedida
         if (response.ok) {
-          // Converte a resposta para JSON
           const data: CharacterData = await response.json();
 
-          // Atualiza o estado do componente com os dados recebidos
           setCharacterData(data);
         } else {
           console.error("Erro ao obter dados da API");
@@ -55,7 +50,6 @@ function PrevCard() {
       }
     };
 
-    // Chama a função para buscar os dados quando o componente monta ou quando a URL muda
     fetchCharacterData();
   }, [router.query.id]);
 
@@ -63,6 +57,9 @@ function PrevCard() {
     <>
       <Header />
       <div className="container mx-auto w-full h-screen">
+        <Link href={"/"}>
+          <IoMdArrowRoundBack />
+        </Link>
         {characterData && (
           <div className="flex flex-col items-center justify-center h-screen w-full">
             <div className="flex flex-col gap-1">
