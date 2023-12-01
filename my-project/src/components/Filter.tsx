@@ -17,10 +17,10 @@ export default function Filter() {
 
   return (
     <div className="container mx-auto my-10 flex flex-row justify-between">
-      <div className="flex flex-row items-center justify-center border border-gray-300 w-full max-w-[300px]">
+      <div className="flex flex-row items-center justify-center border border-gray-300 w-full max-w-[300px] p-1">
         <AiOutlineSearch />
         <input
-          className="w-full p-3"
+          className="w-full p-3 outline-none"
           type="text"
           placeholder="Filter by name"
         />
