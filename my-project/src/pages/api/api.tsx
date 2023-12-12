@@ -5,19 +5,7 @@ const fetchData = async (url: string) => {
 };
 
 export const fetchCharacters = async () => {
-  return fetchData("https://rickandmortyapi.com/api/character");
-};
-
-export const fetchLocations = async () => {
-  return fetchData("https://rickandmortyapi.com/api/location");
-};
-
-export const fetchEpisodes = async () => {
-  return fetchData("https://rickandmortyapi.com/api/episode");
-};
-
-export const fetchPage = async (pageNumber: number) => {
-  return fetchData(
-    `https://rickandmortyapi.com/api/character/?page=${pageNumber}`
-  );
+  const data = await fetchData("https://rickandmortyapi.com/api/character");
+  console.log(data);
+  return data.results;
 };

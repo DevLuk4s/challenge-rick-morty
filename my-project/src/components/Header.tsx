@@ -12,7 +12,7 @@ export default function Header() {
           <li>
             <Link
               className="hover:text-green-500 font-semibold text-lg"
-              href={`@/components/Card`}
+              href={"/"}
             >
               Character
             </Link>
@@ -20,7 +20,7 @@ export default function Header() {
           <li>
             <Link
               className="hover:text-green-500 font-semibold text-lg"
-              href="#"
+              href=""
             >
               Location
             </Link>
@@ -28,7 +28,7 @@ export default function Header() {
           <li>
             <Link
               className="hover:text-green-500 font-semibold text-lg"
-              href="#"
+              href=""
             >
               Episode
             </Link>

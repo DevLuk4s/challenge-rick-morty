@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { IoMdArrowDropdown } from "react-icons/io";
 
@@ -6,14 +6,6 @@ export default function Filter() {
   const [speciesdropdown, setSpeciesDropdown] = useState(false);
   const [agenderdropdown, setAgenderDropdown] = useState(false);
   const [statusdropdown, setStatusDropdown] = useState(false);
-  const [speciesValue, setSpeciesValue] = useState("Species");
-  const [agenderValue, setAgenderValue] = useState("Agender");
-  const [statusValue, setStatusValue] = useState("Status");
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const ValueTag = (value: string) => {
-    setSpeciesValue(value);
-  };
 
   return (
     <div className="container mx-auto my-10 flex flex-row justify-between">
@@ -21,8 +13,9 @@ export default function Filter() {
         <AiOutlineSearch />
         <input
           className="w-full p-3 outline-none"
-          type="text"
+          type="search"
           placeholder="Filter by name"
+          // onSubmit={}
         />
       </div>
       <div className="relative flex flex-col w-full max-w-[300px]">
@@ -68,12 +61,12 @@ export default function Filter() {
           onClick={() => setStatusDropdown(!statusdropdown)}
           className="flex items-center justify-between w-full border border-gray-300 p-3"
         >
-          {speciesValue} <IoMdArrowDropdown />
+          Status <IoMdArrowDropdown />
         </button>
         {statusdropdown && (
           <div className="border border-gray-300 p-3 absolute top-14 left-0 z-10 bg-white w-full">
             <h1>Dead</h1>
-            <h1 onClick={() => ValueTag("Alive")}>Alive</h1>
+            <h1>Alive</h1>
             <h1>Unknown</h1>
           </div>
         )}
